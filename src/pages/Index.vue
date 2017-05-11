@@ -6,11 +6,12 @@
         <tabs position="bottom"
               :index="0"
               @chooseItem="chooseItem"></tabs>
+    
     </div>
 </template>
 
 <script>
-import Search from '../components/Search.vue';
+import Search from '../components/search/Search.vue';
 import List from '../components/List.vue';
 import User from '../components/User.vue';
 import Tabs from '../components/Tabs.vue';
@@ -21,8 +22,10 @@ export default {
             index: 0
         }
     },
-    created() {
-
+    mounted() {
+        this.$nextTick(() => {
+        
+        });
     },
     methods: {
         chooseItem({ index }) {
@@ -39,5 +42,7 @@ export default {
 </script>
 
 <style>
-
+    #index {
+        height: 100%;
+    }
 </style>
