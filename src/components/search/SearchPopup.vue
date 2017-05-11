@@ -11,13 +11,12 @@
 import { Header, Cell, Button } from 'mint-ui';
 
 import SearchField from './SearchField';
-import Congfig from '../../config';
-const { conditions } = Congfig;
+
 export default {
     name: 'searchPopup',
     data(){
         return {
-            conditions,
+            conditions: this.$Config.conditions,
             username: ''
         }
     },

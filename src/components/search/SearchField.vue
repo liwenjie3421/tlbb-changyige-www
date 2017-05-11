@@ -6,12 +6,12 @@
 <script>
 
 import Congfig from '../../config';
-const { conditions } = Congfig;
+
 export default {
     name: 'searchPopup',
     data(){
         return {
-            
+            conditions: this.$Config.conditions
         }
     },
     props: {
