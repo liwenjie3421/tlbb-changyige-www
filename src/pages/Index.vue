@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import Search from '../components/search/Search.vue';
+import Search from '../components/Search.vue';
 import List from '../components/List.vue';
 import User from '../components/User.vue';
 import Tabs from '../components/Tabs.vue';
