@@ -1,7 +1,7 @@
 <template>
     <div id="serach">
-        <head-title title="自定义搜索条件"
-                    class="title"></head-title>
+        <hea-title title="自定义搜索条件"
+                   class="title"></hea-title>
         <checklist id="checklist"
                    title="选中的条件将会用于搜索，请点击配置"
                    v-model="searchItems"
@@ -10,19 +10,19 @@
         <div style="text-align: center; padding-top: 10px;">
             <m-button size="small"
                       type="primary"
-                      @click="toConfig">去配置</m-button>
+                      @click="toSearchConfig">
+                      去配置
+            </m-button>
         </div>
     </div>
 </template>
 <script>
 import { Header, Checklist, Button } from 'mint-ui';
 
-import Congfig from '../../config';
-const { conditions } = Congfig;
 export default {
     name: 'serach',
     components: {
-        HeadTitle: Header,
+        HeaTitle: Header,
         Checklist,
         mButton: Button,
     },
@@ -33,7 +33,8 @@ export default {
         }
     },
     created() {
-        for(let item in conditions) {
+        const { conditions } = this.$Config;
+        for (let item in conditions) {
             this.options.push({
                 label: conditions[item].label,
                 value: item,
@@ -42,7 +43,8 @@ export default {
         }
     },
     methods: {
-        toConfig() {
+        toSearchConfig() {
+            this.$router.push('SearchConfig');
         }
     }
 };
