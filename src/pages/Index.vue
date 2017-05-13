@@ -22,11 +22,6 @@ export default {
             index: 0
         }
     },
-    mounted() {
-        this.$nextTick(() => {
-        
-        });
-    },
     methods: {
         chooseItem({ index }) {
             this.index = index;

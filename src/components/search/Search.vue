@@ -12,18 +12,11 @@
                       type="primary"
                       @click="toConfig">去配置</m-button>
         </div>
-        <popup style="height: 100%;width: 100%;"
-               v-model="popupVisible"
-               position="right"
-               :modal="false">
-            <search-popup :searchItems="searchItems"></search-popup>
-        </popup>
     </div>
 </template>
 <script>
-import { Header, Checklist, Button, Popup } from 'mint-ui';
+import { Header, Checklist, Button } from 'mint-ui';
 
-import SearchPopup from './SearchPopup';
 import Congfig from '../../config';
 const { conditions } = Congfig;
 export default {
@@ -32,14 +25,11 @@ export default {
         HeadTitle: Header,
         Checklist,
         mButton: Button,
-        Popup,
-        SearchPopup
     },
     data() {
         return {
             searchItems: ['profession'],
-            options: [],
-            popupVisible: false
+            options: []
         }
     },
     created() {
@@ -53,7 +43,6 @@ export default {
     },
     methods: {
         toConfig() {
-            this.popupVisible = true;
         }
     }
 };
