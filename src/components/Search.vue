@@ -11,7 +11,7 @@
             <m-button size="small"
                       type="primary"
                       @click="toSearchConfig">
-                      去配置
+                去配置
             </m-button>
         </div>
     </div>
@@ -28,7 +28,7 @@ export default {
     },
     data() {
         return {
-            searchItems: ['profession'],
+            searchItems: [],
             options: []
         }
     },
@@ -37,14 +37,18 @@ export default {
         for (let item in conditions) {
             this.options.push({
                 label: conditions[item].label,
-                value: item,
-                checked: true
+                value: item
             });
         }
+        // 读取是否选择过
+        this.searchItems = this.$store.getters.searchConditions;
     },
     methods: {
         toSearchConfig() {
             this.$router.push('SearchConfig');
+            this.$store.dispatch('chooseSearchConditions', {
+                choosed: this.searchItems
+            });
         }
     }
 };
