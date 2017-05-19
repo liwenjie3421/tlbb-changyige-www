@@ -1,6 +1,6 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 var path = require('path')
-
+var domain = 'http://localhost:3000';
 module.exports = {
   build: {
     env: require('./prod.env'),
@@ -28,8 +28,8 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/getRoleList': {
-        target: 'http://localhost:3000',
+      '/api/getRoleList': {
+        target: domain,
         changeOrigin: true
       }
     },
