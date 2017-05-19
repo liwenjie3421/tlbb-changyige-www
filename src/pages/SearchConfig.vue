@@ -44,110 +44,121 @@
 </template>
 
 <script>
-import { Header, Button, Cell, Popup, Picker, Field } from 'mint-ui';
-
-export default {
-    name: 'SearchConfig',
-    data() {
-        return {
-            searchConditions: {},
-            popupVisible: false,
-            popupItem: '',
-            profession: [{
-                values: this.$Config.professionList
-            }],
-            level: [{
-                values: this.$Config.levelList
-            }, {
-                divider: true,
-                content: '-',
-            }, {
-                values: this.$Config.levelList
-            }],
-            sex: [{
-                values: this.$Config.sexList
-            }],
-            xiulian: [{
-                values: this.$Config.xiulianList
-            }],
-            xinfa: [{
-                values: this.$Config.xinfaList
-            }]
-        }
-    },
-    methods: {
-        detailConfig(id) {
-            this.popupItem = id;
-            this.popupVisible = true;
+    import {
+        Header,
+        Button,
+        Cell,
+        Popup,
+        Picker,
+        Field
+    } from 'mint-ui';
+    
+    export default {
+        name: 'SearchConfig',
+        data() {
+            return {
+                searchConditions: {},
+                popupVisible: false,
+                popupItem: '',
+                profession: [{
+                    values: this.$Config.professionList
+                }],
+                level: [{
+                    values: this.$Config.levelList
+                }, {
+                    divider: true,
+                    content: '-',
+                }, {
+                    values: this.$Config.levelList
+                }],
+                sex: [{
+                    values: this.$Config.sexList
+                }],
+                xiulian: [{
+                    values: this.$Config.xiulianList
+                }],
+                xinfa: [{
+                    values: this.$Config.xinfaList
+                }]
+            }
         },
-        onProfessionChange(picker, values) {
-            this.searchConditions.profession.value = values[0];
-        },
-        onLevelChange(picker, values) {
-            this.searchConditions.level.value = `${values[0]}-${(values[1] >= values[0]) ? values[1] : values[0]}`;
-        },
-        onSexChange(picker, values) {
-            this.searchConditions.sex.value = values[0];
-        },
-        onXiulianChange(picker, values) {
-            this.searchConditions.xiulian.value = values[0];
-        },
-        onXinfaChange(picker, values) {
-            this.searchConditions.xinfa.value = values[0];
-        },
-        toSearch() {
-            let searchObj = {};
-            for (let name in this.searchConditions) {
-                let item = this.searchConditions[name];
-                console.log(item.rangeInput)
-                if (!item.rangeInput) {
-                    if(this.DEFAULT_VALUE !== item.value) {
-                        searchObj[name] = item.value;
-                    }
-                } else {
-                    if (item.range[0] && item.range[0]) {
-                        searchObj[name] = `${item.range[0]}-${item.range[1]}`;
+        methods: {
+            detailConfig(id) {
+                this.popupItem = id;
+                this.popupVisible = true;
+            },
+            onProfessionChange(picker, values) {
+                this.searchConditions.profession.value = values[0];
+            },
+            onLevelChange(picker, values) {
+                this.searchConditions.level.value = `${values[0]}-${(values[1] >= values[0]) ? values[1] : values[0]}`;
+            },
+            onSexChange(picker, values) {
+                this.searchConditions.sex.value = values[0];
+            },
+            onXiulianChange(picker, values) {
+                this.searchConditions.xiulian.value = values[0];
+            },
+            onXinfaChange(picker, values) {
+                this.searchConditions.xinfa.value = values[0];
+            },
+            toSearch() {
+                const {
+                    domain
+                } = this.$Config;
+                let searchObj = {};
+                for (let name in this.searchConditions) {
+                    let item = this.searchConditions[name];
+                    console.log(item.rangeInput)
+                    if (!item.rangeInput) {
+                        if (this.DEFAULT_VALUE !== item.value) {
+                            searchObj[name] = item.value;
+                        }
+                    } else {
+                        if (item.range[0] && item.range[0]) {
+                            searchObj[name] = `${item.range[0]}-${item.range[1]}`;
+                        }
                     }
                 }
+                this.$http.get('/getRoleList', {
+                    params: searchObj
+                });
+                console.log(searchObj);
             }
-            console.log(searchObj);
+        },
+        components: {
+            HeaTitle: Header,
+            mButton: Button,
+            mCell: Cell,
+            mPopup: Popup,
+            mPicker: Picker,
+            mField: Field
+        },
+        created() {
+            const {
+                conditions
+            } = this.$Config;
+            this.DEFAULT_VALUE = '点我配置：）';
+            this.$store.getters.searchConditions.map((v, k) => {
+                this.searchConditions[v] = {
+                    label: conditions[v].label,
+                    value: this.DEFAULT_VALUE,
+                    rangeInput: conditions[v].rangeInput,
+                    range: []
+                }
+            });
+    
         }
-    },
-    components: {
-        HeaTitle: Header,
-        mButton: Button,
-        mCell: Cell,
-        mPopup: Popup,
-        mPicker: Picker,
-        mField: Field
-    },
-    created() {
-        const { conditions } = this.$Config;
-        this.DEFAULT_VALUE = '点我配置：）';
-        this.$store.getters.searchConditions.map((v, k) => {
-            this.searchConditions[v] = {
-                label: conditions[v].label,
-                value: this.DEFAULT_VALUE,
-                rangeInput: conditions[v].rangeInput,
-                range: []
-            }
-        });
-
     }
-}
 </script>
 
 <style>
-#SearchConfig {
-    height: 100%;
-}
-
-
-
-
-
-
-/*.number-range-main {
-    height: 100%;
-}*/
+    #SearchConfig {
+        height: 100%;
+    }
+    
+    
+    /*.number-range-main {
+            height: 100%;
+        }*/
 </style>
