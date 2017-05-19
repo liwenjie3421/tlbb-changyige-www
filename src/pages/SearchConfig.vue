@@ -1,60 +1,43 @@
 <template>
     <div id="SearchConfig">
         <hea-title title="详细配置">
-            <router-link to="/"
-                         slot="left">
+            <router-link to="/" slot="left">
                 <m-button icon="back">返回</m-button>
             </router-link>
         </hea-title>
-        <m-cell v-for="(scItem, scName) in searchConditions"
-                :title="scItem.label"
-                :key="scName">
+        <m-cell v-for="(scItem, scName) in searchConditions" :title="scItem.label" :key="scName">
             <div v-if="scItem.rangeInput">
-                <m-field placeholder="下限（空为不设置）"
-                         type="number"
-                         v-model="scItem.range[0]"></m-field>
-                <m-field placeholder="上限（空为不设置）"
-                         type="number"
-                         v-model="scItem.range[1]"></m-field>
+                <m-field placeholder="下限（空为不设置）" type="number" v-model="scItem.range[0]"></m-field>
+                <m-field placeholder="上限（空为不设置）" type="number" v-model="scItem.range[1]"></m-field>
             </div>
-            <div v-else
-                 @click="detailConfig(scName)">
+            <div v-else @click="detailConfig(scName)">
                 {{scItem.value}}
             </div>
         </m-cell>
         <div style="text-align: center; padding-top: 10px;">
-            <m-button size="small"
-                      type="primary"
-                      @click="toSearch">
+            <m-button size="small" type="primary" @click="toSearch">
                 去配置
             </m-button>
         </div>
-        <m-popup v-model="popupVisible"
-                 position="bottom"
-                 style="width: 100%;">
+        <m-popup v-model="popupVisible" position="bottom" style="width: 100%;">
             <div v-if="popupItem === 'profession'">
-                <m-picker :slots="profession"
-                          @change="onProfessionChange"></m-picker>
+                <m-picker :slots="profession" @change="onProfessionChange"></m-picker>
             </div>
     
             <div v-if="popupItem === 'level'">
-                <m-picker :slots="level"
-                          @change="onLevelChange"></m-picker>
+                <m-picker :slots="level" @change="onLevelChange"></m-picker>
             </div>
     
             <div v-if="popupItem === 'sex'">
-                <m-picker :slots="sex"
-                          @change="onSexChange"></m-picker>
+                <m-picker :slots="sex" @change="onSexChange"></m-picker>
             </div>
     
             <div v-if="popupItem === 'xiulian'">
-                <m-picker :slots="xiulian"
-                          @change="onXiulianChange"></m-picker>
+                <m-picker :slots="xiulian" @change="onXiulianChange"></m-picker>
             </div>
     
             <div v-if="popupItem === 'xinfa'">
-                <m-picker :slots="xinfa"
-                          @change="onXinfaChange"></m-picker>
+                <m-picker :slots="xinfa" @change="onXinfaChange"></m-picker>
             </div>
         </m-popup>
     </div>
@@ -101,7 +84,7 @@ export default {
             this.searchConditions.profession.value = values[0];
         },
         onLevelChange(picker, values) {
-            this.searchConditions.level.value = `${values[0]} - ${(values[1] >= values[0]) ? values[1] : values[0]}`;
+            this.searchConditions.level.value = `${values[0]}-${(values[1] >= values[0]) ? values[1] : values[0]}`;
         },
         onSexChange(picker, values) {
             this.searchConditions.sex.value = values[0];
@@ -113,7 +96,21 @@ export default {
             this.searchConditions.xinfa.value = values[0];
         },
         toSearch() {
-            console.log(this.searchConditions)
+            let searchObj = {};
+            for (let name in this.searchConditions) {
+                let item = this.searchConditions[name];
+                console.log(item.rangeInput)
+                if (!item.rangeInput) {
+                    if(this.DEFAULT_VALUE !== item.value) {
+                        searchObj[name] = item.value;
+                    }
+                } else {
+                    if (item.range[0] && item.range[0]) {
+                        searchObj[name] = `${item.range[0]}-${item.range[1]}`;
+                    }
+                }
+            }
+            console.log(searchObj);
         }
     },
     components: {
@@ -126,10 +123,11 @@ export default {
     },
     created() {
         const { conditions } = this.$Config;
+        this.DEFAULT_VALUE = '点我配置：）';
         this.$store.getters.searchConditions.map((v, k) => {
             this.searchConditions[v] = {
                 label: conditions[v].label,
-                value: '点我配置：）',
+                value: this.DEFAULT_VALUE,
                 rangeInput: conditions[v].rangeInput,
                 range: []
             }
@@ -143,6 +141,8 @@ export default {
 #SearchConfig {
     height: 100%;
 }
+
+
 
 
 
