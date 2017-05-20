@@ -15,6 +15,7 @@ const getters = {
         if (localStorage.searchConditions) {
             return JSON.parse(localStorage.searchConditions);
         }
+        return state.searchConditions;
     },
     serverGroup: state => {
         if (state.serverGroup) {
@@ -29,6 +30,7 @@ const getters = {
         if (localStorage.serverInfo) {
             return JSON.parse(localStorage.serverInfo);
         }
+        return state.serverInfo;
     }
 }
 
