@@ -28,7 +28,7 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/api/getRoleList': {
+      '/api/': {
         target: domain,
         changeOrigin: true
       }
