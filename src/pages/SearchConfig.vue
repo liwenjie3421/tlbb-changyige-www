@@ -1,7 +1,7 @@
 <template>
     <div id="SearchConfig">
         <hea-title title="详细配置">
-            <router-link to="/" slot="left">
+            <router-link to="/index" slot="left">
                 <m-button icon="back">返回</m-button>
             </router-link>
         </hea-title>
