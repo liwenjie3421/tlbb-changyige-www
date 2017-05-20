@@ -91,6 +91,7 @@ export default {
             this.searchConditions.profession.value = values[0];
         },
         onLevelChange(picker, values) {
+            values = values.map(v => v = v || this.$Config.levelList[0]);
             this.searchConditions.level.value = `${values[0]}-${(values[1] >= values[0]) ? values[1] : values[0]}`;
         },
         onSexChange(picker, values) {
