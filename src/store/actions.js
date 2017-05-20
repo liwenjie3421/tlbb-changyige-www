@@ -11,3 +11,9 @@ export const chooseSearchConditions = ({commit}, product) => {
         choosed: product.choosed
     })
 };
+
+export const choosesServer = ({commit}, product) => {
+    commit(types.CHOOSE_SERVER, {
+        serverInfo: product.serverInfo
+    })
+};

@@ -86,6 +86,14 @@ export default {
                 return;
             }
             this.$router.push('Index');
+            this.$store.dispatch('choosesServer', {
+                serverInfo: {
+                    area_name: item.area_name,
+                    world_name: item.label,
+                    world_id: item.world_id
+                }
+            });
+            console.log(this.$store.getters.serverInfo);
         }
 
     },
