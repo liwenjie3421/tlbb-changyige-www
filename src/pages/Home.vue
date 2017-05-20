@@ -55,7 +55,7 @@ export default {
                 this.$http.get('/api/getServers', {
                     params: {
                         serverGroup: this.serverGroup,
-                        searchServerKey: this.searchServerCondition
+                        searchServerKey: encodeURIComponent(this.searchServerCondition)
                     }
                 }).then((res) => {
                     if (res.data && res.data.result && res.data.result.length && !res.data.error) {
