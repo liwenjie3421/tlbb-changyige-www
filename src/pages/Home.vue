@@ -14,12 +14,14 @@
                         <m-button>跳过</m-button>
                     </router-link>
                 </hea-title>
-                <search v-model="searchServerCondition" :autofocus="true" style="margin-top: 40px;">
-                    <div v-for="item in searchServerResult" @click="chooseServer(item)">
-                        <m-cell :title="item.label" :key="item.world_id" :value="item.area_name" is-link>
-                        </m-cell>
-                    </div>
-                </search>
+                <div style="margin-top:40px; position:relative;">
+                    <search v-model="searchServerCondition" :autofocus="true">
+                        <div v-for="item in searchServerResult" @click="chooseServer(item)">
+                            <m-cell :title="item.label" :key="item.world_id" :value="item.area_name" :is-link="!!(item.label && item.world_id && item.area_name)">
+                            </m-cell>
+                        </div>
+                    </search>
+                </div>
             </div>
         </m-popup>
     </div>
@@ -49,14 +51,19 @@ export default {
         searchServerCondition(value) {
             clearTimeout(this.sscSetTime);
             this.sscSetTime = setTimeout(() => {
+                this.searchServerResult = [{ label: '搜索中..' }]
                 this.$http.get('/api/getServers', {
                     params: {
                         serverGroup: this.serverGroup,
                         searchServerKey: this.searchServerCondition
                     }
                 }).then((res) => {
-                    if (res.data && res.data.result && !res.data.error) {
+                    if (res.data && res.data.result && res.data.result.length && !res.data.error) {
                         this.searchServerResult = res.data.result;
+                    } else {
+                        this.searchServerResult = [{
+                            label: '未查询到相关服务器'
+                        }];
                     }
                 });
             }, 300);
@@ -66,17 +73,19 @@ export default {
         checkServerGroup(item) {
             this.popupVisible = true;
             this.serverGroup = item;
+            this.$store.dispatch('chooseServerGroup', {
+                choosed: this.serverGroup
+            });
+            console.log(this.$store.getters.serverGroup);
         },
         closePopup() {
             this.popupVisible = false;
         },
         chooseServer(item) {
-            // this.$router.push('Index');
-            this.$store.dispatch('chooseServerGroup', {
-                choosed: this.serverGroup
-            });
-            console.log(this.$store.getters.serverGroup);
-
+            if (!(item.label && item.world_id && item.area_name)) {
+                return;
+            }
+            this.$router.push('Index');
         }
 
     },
