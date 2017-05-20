@@ -1,7 +1,8 @@
 import * as types from '../mutations-type';
 
 const state = {
-    searchConditions: []
+    searchConditions: [],
+    serverGroup: ''
 }
 
 // getters
@@ -10,7 +11,15 @@ const getters = {
         if (state.searchConditions.length) {
             return state.searchConditions;
         }
-        return JSON.parse(localStorage.searchConditions);
+        if (localStorage.searchConditions) {
+            return JSON.parse(localStorage.searchConditions);
+        }
+    },
+    serverGroup: state => {
+        if (state.serverGroup) {
+            return state.serverGroup;
+        }
+        return localStorage.serverGroup;
     }
 }
 
@@ -25,6 +34,14 @@ const mutations = {
         state.searchConditions = choosed;
         try {
             localStorage.setItem('searchConditions', JSON.stringify(choosed));
+        } catch (e) {
+            console.log(e);
+        }
+    },
+    [types.CHOOSE_SERVER_GROUP](state, {choosed}) {
+        state.serverGroup = choosed;
+        try {
+            localStorage.setItem('serverGroup', choosed);
         } catch (e) {
             console.log(e);
         }
