@@ -1,6 +1,8 @@
 <template>
     <div id="home">
-        <hea-title title="选择内测或公测" class="title"></hea-title>
+        <hea-title title="选择内测或公测" class="title">
+            <m-button slot="right" @click="changeStateArea(stateArea.value)">{{stateArea.label}}</m-button>
+        </hea-title>
         <div v-for="item in serverGroupsArr" @click="checkServerGroup(item.value)">
             <m-Cell :title="item.label" :key="item.value" is-link>
             </m-Cell>
@@ -10,9 +12,9 @@
             <div class="maxSize">
                 <hea-title title="选择区服" fixed class="title">
                     <m-button icon="back" slot="left" @click="closePopup">返回</m-button>
-                    <router-link to="/index" slot="right">
-                        <m-button>跳过</m-button>
-                    </router-link>
+                    <!--<router-link to="/index" slot="right">
+                                                    <m-button>跳过</m-button>
+                                                </router-link>-->
                 </hea-title>
                 <div style="margin-top:40px; position:relative;">
                     <search v-model="searchServerCondition" :autofocus="true">
@@ -42,6 +44,10 @@ export default {
                 label: '内测服',
                 value: 'tllm'
             }],
+            stateArea: {
+                label: '公示区',
+                value: 'public'
+            },
             searchServerResult: [],
             searchServerCondition: '',
             popupVisible: false,
@@ -70,6 +76,19 @@ export default {
         }
     },
     methods: {
+        changeStateArea(value) {
+            let stateAreaConfig = {
+                'public': '公示区',
+                'sell': '售卖区'
+            };
+            if (this.stateArea.value === 'public') {
+                this.stateArea.value = 'sell';
+                this.stateArea.label = stateAreaConfig['sell'];
+            } else {
+                this.stateArea.value = 'public';
+                this.stateArea.label = stateAreaConfig['public'];
+            }
+        },
         checkServerGroup(item) {
             this.popupVisible = true;
             this.serverGroup = item;
