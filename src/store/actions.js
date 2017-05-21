@@ -17,3 +17,9 @@ export const choosesServer = ({commit}, product) => {
         serverInfo: product.serverInfo
     })
 };
+
+export const chooseStateArea = ({commit}, product) => {
+    commit(types.CHOOSE_STATE_AREA, {
+        stateArea: product.stateArea
+    })
+};

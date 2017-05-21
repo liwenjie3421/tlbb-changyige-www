@@ -3,7 +3,8 @@ import * as types from '../mutations-type';
 const state = {
     searchConditions: [],
     serverGroup: '',
-    serverInfo: {}
+    serverInfo: {},
+    stateArea: {}
 }
 
 // getters
@@ -31,6 +32,15 @@ const getters = {
             return JSON.parse(localStorage.serverInfo);
         }
         return state.serverInfo;
+    },
+    stateArea: state => {
+        if (state.stateArea) {
+            return state.stateArea;
+        }
+        if (localStorage.stateArea) {
+            return JSON.parse(localStorage.stateArea);
+        }
+        return state.stateArea;
     }
 }
 
@@ -61,6 +71,14 @@ const mutations = {
         state.serverInfo = serverInfo;
         try {
             localStorage.setItem('serverInfo', JSON.stringify(serverInfo));
+        } catch (e) {
+            console.log(e);
+        }
+    },
+    [types.CHOOSE_STATE_AREA](state, {stateArea}) {
+        state.stateArea = stateArea;
+        try {
+            localStorage.setItem('stateArea', JSON.stringify(stateArea));
         } catch (e) {
             console.log(e);
         }
