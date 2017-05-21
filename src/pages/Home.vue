@@ -76,7 +76,7 @@ export default {
             this.$store.dispatch('chooseServerGroup', {
                 choosed: this.serverGroup
             });
-            console.log(this.$store.getters.serverGroup);
+            // console.log(this.$store.getters.serverGroup);
         },
         closePopup() {
             this.popupVisible = false;
@@ -93,7 +93,7 @@ export default {
                     world_id: item.world_id
                 }
             });
-            console.log(this.$store.getters.serverInfo);
+            // console.log(this.$store.getters.serverInfo);
         }
 
     },
