@@ -110,7 +110,6 @@ export default {
             let searchObj = {};
             for (let name in this.searchConditions) {
                 let item = this.searchConditions[name];
-                console.log(item.rangeInput)
                 if (!item.rangeInput) {
                     if (this.DEFAULT_VALUE !== item.value) {
                         searchObj[name] = item.value;
@@ -121,10 +120,16 @@ export default {
                     }
                 }
             }
-            this.$http.get('/getRoleList', {
-                params: searchObj
+            searchObj.sex = searchObj.sex;
+            searchObj.serverGroup = this.$store.getters.serverGroup;
+            searchObj.stateArea = this.$store.getters.stateArea.value;
+            searchObj.serverInfo = this.$store.getters.serverInfo;
+            for (let itemName in searchObj.serverInfo) {
+                searchObj.serverInfo[itemName] = searchObj.serverInfo[itemName];
+            }
+            this.$http.post('/api/getRoleList', searchObj).then((response) => {
+                console.log(response)
             });
-            console.log(searchObj);
         }
     },
     components: {
@@ -157,6 +162,10 @@ export default {
 #SearchConfig {
     height: 100%;
 }
+
+
+
+
 
 
 

@@ -13,8 +13,8 @@
                 <hea-title title="选择区服" fixed class="title">
                     <m-button icon="back" slot="left" @click="closePopup">返回</m-button>
                     <!--<router-link to="/index" slot="right">
-                                                        <m-button>跳过</m-button>
-                                                    </router-link>-->
+                                                                                                    <m-button>跳过</m-button>
+                                                                                                </router-link>-->
                 </hea-title>
                 <div style="margin-top:40px; position:relative;">
                     <search v-model="searchServerCondition" :autofocus="true">
@@ -44,10 +44,7 @@ export default {
                 label: '内测服',
                 value: 'tllm'
             }],
-            stateArea: {
-                label: '公示区',
-                value: 'public'
-            },
+            stateArea: this.$store.getters.stateArea,
             searchServerResult: [],
             searchServerCondition: '',
             popupVisible: false,

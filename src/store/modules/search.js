@@ -4,7 +4,10 @@ const state = {
     searchConditions: [],
     serverGroup: '',
     serverInfo: {},
-    stateArea: {}
+    stateArea: {
+        label: '公示区',
+        value: 'public'
+    }
 }
 
 // getters
@@ -25,18 +28,12 @@ const getters = {
         return localStorage.serverGroup;
     },
     serverInfo: state => {
-        if (state.serverInfo) {
-            return state.serverInfo;
-        }
         if (localStorage.serverInfo) {
             return JSON.parse(localStorage.serverInfo);
         }
         return state.serverInfo;
     },
     stateArea: state => {
-        if (state.stateArea) {
-            return state.stateArea;
-        }
         if (localStorage.stateArea) {
             return JSON.parse(localStorage.stateArea);
         }
