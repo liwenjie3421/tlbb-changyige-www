@@ -4,12 +4,12 @@ import User from '../pages/User.vue';
 
 export default [
     {
-        path: '/SearchConfig',
+        path: '/searchConfig',
         name: 'searchConfig',
         component: SearchConfig
     },
     {
-        path: '/index',
+        path: '/list',
         name: 'list',
         component: List
     },
