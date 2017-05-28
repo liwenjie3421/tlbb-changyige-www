@@ -1,21 +1,21 @@
-import Index from '../pages/Index.vue';
-import Home from '../pages/Home.vue';
 import SearchConfig from '../pages/SearchConfig.vue';
+import List from '../pages/List.vue';
+import User from '../pages/User.vue';
 
 export default [
     {
-        path: '/',
-        name: 'Home',
-        component: Home
+        path: '/SearchConfig',
+        name: 'searchConfig',
+        component: SearchConfig
     },
     {
         path: '/index',
-        name: 'Index',
-        component: Index
+        name: 'list',
+        component: List
     },
     {
-        path: '/SearchConfig',
-        name: 'SearchConfig',
-        component: SearchConfig
+        path: '/user',
+        name: 'user',
+        component: User
     }
 ];
