@@ -1,24 +1,19 @@
 <template>
-  <div id="searchConfig">
+  <div id="user">
     <m-tabs></m-tabs>
   </div>
 </template>
 <script>
   import mTabs from '../components/Tabs.vue';
   export default {
-    name: 'searchConfig',
+    name: 'user',
     components: {
       mTabs
-    },
-    data() {
-      return {
-        selected: ''
-      }
     }
-  };
+  }
 
 </script>
-<style>
+<style scoped>
 
 
 </style>
