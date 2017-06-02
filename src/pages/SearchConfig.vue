@@ -2,7 +2,7 @@
   <div id="searchConfig">
     <m-header title="条件配置"></m-header>
     <m-cell title="搜索条件配置" is-link></m-cell>
-    <m-cell title="选择公示或售卖" is-link></m-cell>
+    <m-cell title="选择公示或售卖" :label="stateAreaLabel" to="stateArea" is-link></m-cell>
     <m-cell title="选择区服" is-link></m-cell>
     <m-tabs></m-tabs>
   </div>
@@ -22,7 +22,17 @@
       mCell: Cell
     },
     data() {
-      return {}
+      return {
+        stateAreaLabel: '必填'
+      }
+    },
+    created() {
+      let stateArea = this.$store.getters.stateArea;
+      // console.log(stateArea);
+      
+      if (stateArea && stateArea.label) {
+        this.stateAreaLabel = `已配置: ${stateArea.label}`
+      }
     }
   };
 
