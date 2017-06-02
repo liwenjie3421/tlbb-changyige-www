@@ -5,8 +5,8 @@ const state = {
     serverGroup: '',
     serverInfo: {},
     stateArea: {
-        label: '公示区',
-        value: 'public'
+        label: '',
+        value: ''
     }
 }
 
@@ -34,10 +34,15 @@ const getters = {
         return state.serverInfo;
     },
     stateArea: state => {
-        if (localStorage.stateArea) {
-            return JSON.parse(localStorage.stateArea);
+        if (state.stateArea.label && state.stateArea.value) {
+            return state.stateArea;
+        } else {
+            if (localStorage.stateArea) {
+                return JSON.parse(localStorage.stateArea);
+            } else {
+                return {};
+            }
         }
-        return state.stateArea;
     }
 }
 
