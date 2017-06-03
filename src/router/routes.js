@@ -2,7 +2,7 @@ import SearchConfig from '../pages/SearchConfig.vue';
 import List from '../pages/List.vue';
 import User from '../pages/User.vue';
 import StateArea from '../pages/StateArea.vue';
-import ServerGroup from '../pages/ServerGroup.vue';
+import ServersGroup from '../pages/ServersGroup.vue';
 
 export default [
     {
@@ -26,8 +26,8 @@ export default [
         component: StateArea
     },
     {
-        path: '/serverGroup',
-        name: 'serverGroup',
-        component: ServerGroup
+        path: '/serversGroup',
+        name: 'serversGroup',
+        component: ServersGroup
     }
 ];
