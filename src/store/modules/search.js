@@ -3,7 +3,11 @@ import * as types from '../mutations-type';
 const state = {
     searchConditions: [],
     serverGroup: '',
-    serverInfo: {},
+    serverInfo: {
+        area_name: '',
+        world_name: '',
+        world_id: ''
+    },
     stateArea: {
         label: '',
         value: ''
@@ -28,10 +32,15 @@ const getters = {
         return localStorage.serverGroup;
     },
     serverInfo: state => {
-        if (localStorage.serverInfo) {
-            return JSON.parse(localStorage.serverInfo);
+        if (state.serverInfo.world_name) {
+            return state.serverInfo;
+        } else {
+            if (localStorage.serverInfo) {
+                return JSON.parse(localStorage.serverInfo);
+            } else {
+                return {};
+            }
         }
-        return state.serverInfo;
     },
     stateArea: state => {
         if (state.stateArea.label && state.stateArea.value) {
