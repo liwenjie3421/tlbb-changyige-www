@@ -1,7 +1,11 @@
 <template>
   <div id="searchGroup">
-    <m-search v-model="searchServerCondition" :autofocus="true">
-      <div v-for="item in searchServerResult" @click="test(item)">
+    <m-header title="搜索区服">
+      <!--<div></div>-->
+      <m-button slot="right" @click="clear">清空</m-button>
+    </m-header>
+    <m-search style="position:relative;" v-model="searchServerCondition" :autofocus="true">
+      <div v-for="item in searchServerResult" @click="chooseServer(item)">
         <m-cell :title="item.world_name" :key="item.world_id" :value="item.area_name">
         </m-cell>
       </div>
@@ -11,20 +15,24 @@
 <script>
   import {
     Search,
-    Cell
+    Cell,
+    Header,
+    Button
   } from 'mint-ui';
 
   export default {
     name: 'searchGroup',
     components: {
       mSearch: Search,
-      mCell: Cell
+      mCell: Cell,
+      mHeader: Header,
+      mButton: Button
     },
     data() {
       return {
         searchServerCondition: '',
         searchServerResult: [],
-        serversGroup: {}
+        serversGroup: {},
       }
     },
     created() {
@@ -46,8 +54,17 @@
       });
     },
     methods: {
-      test(value) {
-        console.log(value);
+      chooseServer(serverInfo) {
+        this.$store.dispatch('choosesServer', {
+          serverInfo
+        });
+        this.$router.push('searchConfig');
+      },
+      clear() {
+        this.$store.dispatch('choosesServer', {
+          serverInfo: {}
+        });
+        this.$router.push('searchConfig');
       }
     },
     watch: {

@@ -1,9 +1,9 @@
 <template>
   <div id="searchConfig">
     <m-header title="条件配置"></m-header>
-    <m-cell title="搜索条件配置" :label="seachConditionsLabel" to="serverGroup" is-link></m-cell>
+    <m-cell title="搜索条件配置" :label="seachConditionsLabel" is-link></m-cell>
     <m-cell title="选择公示或售卖" :label="stateAreaLabel" to="stateArea" is-link></m-cell>
-    <m-cell title="选择区服" is-link></m-cell>
+    <m-cell title="选择区服" :label="serverLabel" to="serversGroup" is-link></m-cell>
     <m-tabs></m-tabs>
   </div>
 </template>
@@ -24,15 +24,22 @@
     data() {
       return {
         stateAreaLabel: '必须配置',
-        seachConditionsLabel: ''
+        seachConditionsLabel: '',
+        serverLabel: '任意区服'
       }
     },
     created() {
       let stateArea = this.$store.getters.stateArea;
-      // console.log(stateArea);
+      let serverInfo = this.$store.getters.serverInfo;
+      // console.log(serverInfo);
       
       if (stateArea && stateArea.label) {
         this.stateAreaLabel = `已配置: ${stateArea.label}`
+      }
+      console.log(serverInfo)
+      if (serverInfo && serverInfo.world_name) {
+        console.log(1)
+        this.serverLabel = `已配置: ${serverInfo.world_name}`
       }
     }
   };
