@@ -7,7 +7,7 @@ import store from './store';
 import App from './App';
 import router from './router';
 import Config from './config';
-
+import Mock from './mock';
 
 Vue.config.productionTip = false;
 Vue.prototype.$Config = Config;
