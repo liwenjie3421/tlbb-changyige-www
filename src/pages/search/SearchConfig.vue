@@ -12,7 +12,7 @@
     Cell,
     Header
   } from 'mint-ui';
-  import mTabs from '../components/Tabs.vue';
+  import mTabs from '../../components/Tabs.vue';
 
   export default {
     name: 'searchConfig',

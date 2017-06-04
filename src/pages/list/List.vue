@@ -4,7 +4,7 @@
   </div>
 </template>
 <script>
-  import mTabs from '../components/Tabs.vue';
+  import mTabs from '../../components/Tabs.vue';
   export default {
     name: 'list',
     components: {

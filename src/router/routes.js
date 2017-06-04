@@ -1,8 +1,8 @@
-import SearchConfig from '../pages/SearchConfig.vue';
-import List from '../pages/List.vue';
-import User from '../pages/User.vue';
-import StateArea from '../pages/StateArea.vue';
-import ServersGroup from '../pages/ServersGroup.vue';
+import SearchConfig from '../pages/search/SearchConfig.vue';
+import List from '../pages/list/List.vue';
+import User from '../pages/user/User.vue';
+import StateArea from '../pages/search/StateArea.vue';
+import ServersGroup from '../pages/search/ServersGroup.vue';
 
 export default [
     {
