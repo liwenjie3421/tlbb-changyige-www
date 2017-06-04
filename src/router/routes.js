@@ -3,6 +3,7 @@ import List from '../pages/list/List.vue';
 import User from '../pages/user/User.vue';
 import StateArea from '../pages/search/StateArea.vue';
 import ServersGroup from '../pages/search/ServersGroup.vue';
+import SearchList from '../pages/search/SearchList.vue';
 
 export default [
     {
@@ -29,5 +30,10 @@ export default [
         path: '/serversGroup',
         name: 'serversGroup',
         component: ServersGroup
+    },
+    {
+        path: '/searchList',
+        name: 'searchList',
+        component: SearchList
     }
 ];
