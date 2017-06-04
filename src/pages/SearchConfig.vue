@@ -36,9 +36,7 @@
       if (stateArea && stateArea.label) {
         this.stateAreaLabel = `已配置: ${stateArea.label}`
       }
-      console.log(serverInfo)
       if (serverInfo && serverInfo.world_name) {
-        console.log(1)
         this.serverLabel = `已配置: ${serverInfo.world_name}`
       }
     }
