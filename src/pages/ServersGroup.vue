@@ -36,7 +36,9 @@
       }
     },
     created() {
-      this.$http.post('/api/getServers').then((r) => {
+      this.$http.post('/api/getServers', {
+        stateArea: this.$store.getters.stateArea.value
+      }).then((r) => {
         let serversObject = {};
         let serversName = [];
         r.data.result.map(area => {
