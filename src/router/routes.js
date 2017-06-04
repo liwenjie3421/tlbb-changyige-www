@@ -4,6 +4,7 @@ import User from '../pages/user/User.vue';
 import StateArea from '../pages/search/StateArea.vue';
 import ServersGroup from '../pages/search/ServersGroup.vue';
 import SearchList from '../pages/search/SearchList.vue';
+import SearchConditions from '../pages/search/SearchConditions.vue';
 
 export default [
     {
@@ -35,5 +36,10 @@ export default [
         path: '/searchList',
         name: 'searchList',
         component: SearchList
+    },
+    {
+        path: '/searchConditions',
+        name: 'searchConditions',
+        component: SearchConditions
     }
 ];
