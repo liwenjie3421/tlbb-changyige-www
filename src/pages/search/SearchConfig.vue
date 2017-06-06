@@ -4,13 +4,19 @@
     <m-cell title="搜索条件配置" :label="seachConditionsLabel" to="searchList" is-link></m-cell>
     <m-cell title="选择公示或售卖" :label="stateAreaLabel" to="stateArea" is-link></m-cell>
     <m-cell title="选择区服" :label="serverLabel" to="serversGroup" is-link></m-cell>
+    <div style="text-align: center; padding-top: 10px;">
+      <m-button size="small" type="primary" @click="search">
+        GO
+      </m-button>
+    </div>
     <m-tabs></m-tabs>
   </div>
 </template>
 <script>
   import {
     Cell,
-    Header
+    Header,
+    Button
   } from 'mint-ui';
   import mTabs from '../../components/Tabs.vue';
 
@@ -19,7 +25,8 @@
     components: {
       mTabs,
       mHeader: Header,
-      mCell: Cell
+      mCell: Cell,
+      mButton: Button
     },
     data() {
       return {
@@ -31,13 +38,21 @@
     created() {
       let stateArea = this.$store.getters.stateArea;
       let serverInfo = this.$store.getters.serverInfo;
-      // console.log(serverInfo);
-      
+
       if (stateArea && stateArea.label) {
         this.stateAreaLabel = `已配置: ${stateArea.label}`
       }
       if (serverInfo && serverInfo.world_name) {
         this.serverLabel = `已配置: ${serverInfo.world_name}`
+      }
+    },
+    methods: {
+      search() {
+      debugger
+      this.$store.getters.stateArea
+      this.$store.getters.serverInfo
+      this.$store.getters.conditionsDetails
+
       }
     }
   };

@@ -2,6 +2,7 @@ import * as types from '../mutations-type';
 
 const state = {
     searchConditions: [],
+    conditionsDetails: {},
     serverGroup: '',
     serverInfo: {
         area_name: '',
@@ -52,6 +53,13 @@ const getters = {
                 return {};
             }
         }
+    },
+    conditionsDetails: state => {
+        if (localStorage.conditionsDetails) {
+            return JSON.parse(localStorage.conditionsDetails);
+        } else {
+            return {};
+        }
     }
 }
 
@@ -90,6 +98,14 @@ const mutations = {
         state.stateArea = stateArea;
         try {
             localStorage.setItem('stateArea', JSON.stringify(stateArea));
+        } catch (e) {
+            console.log(e);
+        }
+    },
+    [types.CONDITIONS_DETAILS](state, {conditionsDetails}) {
+        state.conditionsDetails = conditionsDetails;
+        try {
+            localStorage.setItem('conditionsDetails', JSON.stringify(conditionsDetails));
         } catch (e) {
             console.log(e);
         }

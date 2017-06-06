@@ -23,3 +23,9 @@ export const chooseStateArea = ({commit}, product) => {
         stateArea: product.stateArea
     })
 };
+
+export const setCondtionsDetails = ({commit}, product) => {
+    commit(types.CONDITIONS_DETAILS, {
+        conditionsDetails: product.conditionsDetails
+    })
+};

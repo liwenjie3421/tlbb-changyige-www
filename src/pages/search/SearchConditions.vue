@@ -15,8 +15,8 @@
       </div>
     </m-cell>
     <div style="text-align: center; padding-top: 10px;">
-      <m-button size="small" type="primary" @click="toSearch">
-        去配置
+      <m-button size="small" type="primary" @click="save">
+        完成
       </m-button>
     </div>
     <m-popup v-model="popupVisible" position="bottom" style="width: 100%;">
@@ -103,10 +103,7 @@
       onXinfaChange(picker, values) {
         this.searchConditions.xinfa.value = values[0];
       },
-      toSearch() {
-        const {
-          domain
-        } = this.$Config;
+      save() {
         let searchObj = {};
         for (let name in this.searchConditions) {
           let item = this.searchConditions[name];
@@ -120,18 +117,13 @@
             }
           }
         }
-        searchObj.sex = searchObj.sex;
-        searchObj.serverGroup = this.$store.getters.serverGroup;
-        searchObj.stateArea = this.$store.getters.stateArea.value;
-        searchObj.serverInfo = this.$store.getters.serverInfo;
         for (let itemName in searchObj.serverInfo) {
           searchObj.serverInfo[itemName] = searchObj.serverInfo[itemName];
         }
+        this.$store.dispatch('setCondtionsDetails', {
+          conditionsDetails: searchObj
+        });
         this.$router.push('searchConfig');
-        
-        // this.$http.post('/api/getRoleList', searchObj).then((response) => {
-        //   console.log(response)
-        // });
       }
     },
     components: {
