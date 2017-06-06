@@ -12,7 +12,8 @@ const state = {
     stateArea: {
         label: '',
         value: ''
-    }
+    },
+    betaOrFormal: ''
 }
 
 // getters
@@ -60,6 +61,13 @@ const getters = {
         } else {
             return {};
         }
+    },
+    betaOrFormal: state => {
+        if(state.betaOrFormal){
+            return state.betaOrFormal
+        }else {
+            return localStorage.betaOrFormal;
+        }
     }
 }
 
@@ -106,6 +114,14 @@ const mutations = {
         state.conditionsDetails = conditionsDetails;
         try {
             localStorage.setItem('conditionsDetails', JSON.stringify(conditionsDetails));
+        } catch (e) {
+            console.log(e);
+        }
+    },
+    [types.BETA_OR_FORMAL](state, {betaOrFormal}) {
+        state.betaOrFormal = betaOrFormal;
+        try {
+            localStorage.setItem('betaOrFormal', betaOrFormal);
         } catch (e) {
             console.log(e);
         }

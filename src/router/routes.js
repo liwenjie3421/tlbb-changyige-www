@@ -5,6 +5,7 @@ import StateArea from '../pages/search/StateArea.vue';
 import ServersGroup from '../pages/search/ServersGroup.vue';
 import SearchList from '../pages/search/SearchList.vue';
 import SearchConditions from '../pages/search/SearchConditions.vue';
+import BetaOrFormal from '../pages/search/BetaOrFormal.vue';
 
 export default [
     {
@@ -41,5 +42,10 @@ export default [
         path: '/searchConditions',
         name: 'searchConditions',
         component: SearchConditions
+    },
+    {
+        path: '/betaOrFormal',
+        name: 'betaOrFormal',
+        component: BetaOrFormal
     }
 ];

@@ -2,7 +2,7 @@
   <div id="searchGroup">
     <m-header title="搜索区服">
       <!--<div></div>-->
-      <m-button slot="right" @click="clear">清空</m-button>
+      <m-button slot="right" @click="clear">不配置</m-button>
     </m-header>
     <m-search style="position:relative;" v-model="searchServerCondition" :autofocus="true">
       <div v-for="item in searchServerResult" @click="chooseServer(item)">

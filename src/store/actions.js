@@ -29,3 +29,9 @@ export const setCondtionsDetails = ({commit}, product) => {
         conditionsDetails: product.conditionsDetails
     })
 };
+
+export const chooseBetaOrFormal = ({commit}, product) => {
+    commit(types.BETA_OR_FORMAL, {
+        betaOrFormal: product.betaOrFormal
+    })
+};

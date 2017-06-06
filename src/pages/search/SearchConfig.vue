@@ -3,7 +3,7 @@
     <m-header title="条件配置"></m-header>
     <m-cell title="搜索条件配置" :label="seachConditionsLabel" to="searchList" is-link></m-cell>
     <m-cell title="选择公示或售卖" :label="stateAreaLabel" to="stateArea" is-link></m-cell>
-    <m-cell title="选择区服" :label="serverLabel" to="serversGroup" is-link></m-cell>
+    <m-cell title="选择区服" :label="serverLabel" to="betaOrFormal" is-link></m-cell>
     <div style="text-align: center; padding-top: 10px;">
       <m-button size="small" type="primary" @click="search">
         GO
@@ -38,7 +38,7 @@
     created() {
       let stateArea = this.$store.getters.stateArea;
       let serverInfo = this.$store.getters.serverInfo;
-
+      let betaOrFormal = this.$store.getters.betaOrFormal;
       if (stateArea && stateArea.label) {
         this.stateAreaLabel = `已配置: ${stateArea.label}`
       }
@@ -48,7 +48,6 @@
     },
     methods: {
       search() {
-      debugger
       this.$store.getters.stateArea
       this.$store.getters.serverInfo
       this.$store.getters.conditionsDetails
