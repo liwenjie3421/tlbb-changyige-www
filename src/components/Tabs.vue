@@ -33,6 +33,10 @@
     watch: {
       selected(v) {
         this.$router.push(v);
+        // 判断跳转是否成功
+        if(this.selected !== this.$router.getMatchedComponents()[0].name) {
+          this.selected = this.$router.getMatchedComponents()[0].name;
+        }
       }
     }
   };
