@@ -35,3 +35,9 @@ export const chooseBetaOrFormal = ({commit}, product) => {
         betaOrFormal: product.betaOrFormal
     })
 };
+
+export const setOrderBy = ({commit}, product) => {
+    commit(types.ORDER_BY, {
+        orderBy: product.orderBy
+    })
+};

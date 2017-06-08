@@ -1,4 +1,5 @@
 import * as types from '../mutations-type';
+import { orderBy2label } from '../../config';
 
 const state = {
     searchConditions: [],
@@ -13,7 +14,8 @@ const state = {
         label: '',
         value: ''
     },
-    betaOrFormal: ''
+    betaOrFormal: '',
+    orderBy: 'equip_point-desc'
 }
 
 // getters
@@ -63,10 +65,17 @@ const getters = {
         }
     },
     betaOrFormal: state => {
-        if(state.betaOrFormal){
+        if (state.betaOrFormal) {
             return state.betaOrFormal
-        }else {
+        } else {
             return localStorage.betaOrFormal;
+        }
+    },
+    orderBy: state => {
+        if (state.orderBy) {
+            return state.orderBy;
+        } else {
+            return localStorage.orderBy;
         }
     }
 }
@@ -122,6 +131,14 @@ const mutations = {
         state.betaOrFormal = betaOrFormal;
         try {
             localStorage.setItem('betaOrFormal', betaOrFormal);
+        } catch (e) {
+            console.log(e);
+        }
+    },
+    [types.ORDER_BY](state, {orderBy}) {
+        state.orderBy = orderBy;
+        try {
+            localStorage.setItem('orderBy', orderBy);
         } catch (e) {
             console.log(e);
         }
