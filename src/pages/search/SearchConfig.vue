@@ -38,7 +38,7 @@
     created() {
       let stateArea = this.$store.getters.stateArea;
       let serverInfo = this.$store.getters.serverInfo;
-      let betaOrFormal = this.$store.getters.betaOrFormal;
+
       if (stateArea && stateArea.label) {
         this.stateAreaLabel = `已配置: ${stateArea.label}`
       }
@@ -48,10 +48,7 @@
     },
     methods: {
       search() {
-      this.$store.getters.stateArea
-      this.$store.getters.serverInfo
-      this.$store.getters.conditionsDetails
-
+        this.$router.push('list');
       }
     }
   };
