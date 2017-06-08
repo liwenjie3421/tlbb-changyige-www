@@ -1,5 +1,6 @@
 <template>
   <div id="user">
+    空的。。 这是空的。。
     <m-tabs></m-tabs>
   </div>
 </template>
