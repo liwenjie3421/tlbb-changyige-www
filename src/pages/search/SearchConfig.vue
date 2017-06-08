@@ -41,14 +41,18 @@
       let orderBy = this.$store.getters.orderBy;
       let stateArea = this.$store.getters.stateArea;
       let serverInfo = this.$store.getters.serverInfo;
+      const {
+        orderBy2label,
+        stateArea2labe
+      } = this.$Config;
 
       this.$store.dispatch('setOrderBy', {
         orderBy: orderBy || 'equip_point-desc'
       });
-
-      this.orderByLabel = this.$Config.orderBy2label[this.$store.getters.orderBy];
-      if (stateArea && stateArea.label) {
-        this.stateAreaLabel = `已配置: ${stateArea.label}`
+      
+      this.orderByLabel = orderBy2label[this.$store.getters.orderBy];
+      if (stateArea) {
+        this.stateAreaLabel = `已配置: ${stateArea2labe[stateArea]}`
       }
       if (serverInfo && serverInfo.world_name) {
         this.serverLabel = `已配置: ${serverInfo.world_name}`

@@ -10,10 +10,7 @@ const state = {
         world_name: '',
         world_id: ''
     },
-    stateArea: {
-        label: '',
-        value: ''
-    },
+    stateArea: '',
     betaOrFormal: '',
     orderBy: ''
 }
@@ -47,14 +44,10 @@ const getters = {
         }
     },
     stateArea: state => {
-        if (state.stateArea.label && state.stateArea.value) {
+        if (state.stateArea) {
             return state.stateArea;
         } else {
-            if (localStorage.stateArea) {
-                return JSON.parse(localStorage.stateArea);
-            } else {
-                return {};
-            }
+            return localStorage.stateArea;
         }
     },
     conditionsDetails: state => {
@@ -114,7 +107,7 @@ const mutations = {
     [types.CHOOSE_STATE_AREA](state, {stateArea}) {
         state.stateArea = stateArea;
         try {
-            localStorage.setItem('stateArea', JSON.stringify(stateArea));
+            localStorage.setItem('stateArea', stateArea);
         } catch (e) {
             console.log(e);
         }

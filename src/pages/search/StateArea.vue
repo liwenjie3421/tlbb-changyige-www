@@ -32,10 +32,7 @@
     methods: {
       chooseState(stateItem) {
         this.$store.dispatch('chooseStateArea', {
-          stateArea: {
-            label: stateItem.label,
-            value: stateItem.value
-          }
+          stateArea: stateItem.value
         });
         console.log(this.$store.getters.stateArea);
         this.$router.push('searchConfig');

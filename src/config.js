@@ -44,5 +44,9 @@ export default {
     'goods_level-desc': '等级从高到低',
     'remaintime': '剩余时间从低到高',
     'remaintime-desc': '剩余时间从高到低'
+  },
+  stateArea2labe: {
+    public: '公示区',
+    sell: '售卖区'
   }
 };
