@@ -4,6 +4,7 @@
     <m-cell title="搜索条件配置" :label="seachConditionsLabel" to="searchList" is-link></m-cell>
     <m-cell title="选择公示或售卖" :label="stateAreaLabel" to="stateArea" is-link></m-cell>
     <m-cell title="选择区服" :label="serverLabel" to="betaOrFormal" is-link></m-cell>
+    <m-cell title="排序方式" :label="orderByLabel" to="orderBy" is-link></m-cell>
     <div style="text-align: center; padding-top: 10px;">
       <m-button size="small" type="primary" @click="search">
         GO
@@ -32,10 +33,16 @@
       return {
         stateAreaLabel: '必须配置',
         seachConditionsLabel: '',
-        serverLabel: '任意区服'
+        serverLabel: '任意区服',
+        orderByLabel: ''
       }
     },
     created() {
+      this.$store.dispatch('setOrderBy', {
+        orderBy: 'equip_point-desc'
+      });
+      this.orderByLabel = this.$Config.orderBy2label[this.$store.getters.orderBy];
+
       let stateArea = this.$store.getters.stateArea;
       let serverInfo = this.$store.getters.serverInfo;
 
