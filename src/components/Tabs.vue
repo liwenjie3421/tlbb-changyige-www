@@ -2,7 +2,7 @@
   <div id="tabs">
     <m-tabbar v-model="selected">
       <m-tab-item v-for="tab in tabsArr" :key="tab" :id="tab">
-        <img slot="icon" :src="`static/${tab}.png`">条件配置
+        <img slot="icon" :src="`static/${tab}.png`">{{tab}}
       </m-tab-item>
     </m-tabbar>
   </div>
@@ -22,7 +22,12 @@
     data() {
       return {
         selected: this.$router.getMatchedComponents()[0].name,
-        tabsArr: ['searchConfig', 'list', 'user']
+        tabsArr: ['searchConfig', 'list', 'user'],
+        tabs2label: {
+          'searchConfig': '条件配置',
+          'list': '角色列表',
+          'user': '我的'
+        }
       }
     },
     watch: {
