@@ -36,13 +36,13 @@ export default {
   xiulianList: ['0-3000', '3001-7000', '7001-10000', '10001以上'],
   xinfaList: ['0-1000', '1001-2000', '2001-3000', '3001-4000', '4001以上'],
   orderBy2label: {
-    'equip_point': '装备评分↑',
-    'equip_point-desc': '装备评分↓',
-    'price': '价格↑',
-    'price-desc': '价格↓',
-    'goods_level': '等级↑',
-    'goods_level-desc': '等级↓',
-    'remaintime': '剩余时间↑',
-    'remaintime-desc': '剩余时间↓'
+    'equip_point': '装备评分从低到高',
+    'equip_point-desc': '装备评分从高到低',
+    'price': '价格从低到高',
+    'price-desc': '价格从高到低',
+    'goods_level': '等级从低到高',
+    'goods_level-desc': '等级从高到低',
+    'remaintime': '剩余时间从低到高',
+    'remaintime-desc': '剩余时间从高到低'
   }
 };

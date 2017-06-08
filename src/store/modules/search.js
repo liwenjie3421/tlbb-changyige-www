@@ -15,7 +15,7 @@ const state = {
         value: ''
     },
     betaOrFormal: '',
-    orderBy: 'equip_point-desc'
+    orderBy: ''
 }
 
 // getters

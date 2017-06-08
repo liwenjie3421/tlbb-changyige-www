@@ -38,14 +38,15 @@
       }
     },
     created() {
-      this.$store.dispatch('setOrderBy', {
-        orderBy: 'equip_point-desc'
-      });
-      this.orderByLabel = this.$Config.orderBy2label[this.$store.getters.orderBy];
-
+      let orderBy = this.$store.getters.orderBy;
       let stateArea = this.$store.getters.stateArea;
       let serverInfo = this.$store.getters.serverInfo;
 
+      this.$store.dispatch('setOrderBy', {
+        orderBy: orderBy || 'equip_point-desc'
+      });
+
+      this.orderByLabel = this.$Config.orderBy2label[this.$store.getters.orderBy];
       if (stateArea && stateArea.label) {
         this.stateAreaLabel = `已配置: ${stateArea.label}`
       }
