@@ -2,7 +2,7 @@
   <div id="tabs">
     <m-tabbar v-model="selected">
       <m-tab-item v-for="tab in tabsArr" :key="tab" :id="tab">
-        <img slot="icon" :src="`static/${tab}.png`">{{tab}}
+        <img slot="icon" :src="`static/${tab}.png`">{{tabs2label[tab]}}
       </m-tab-item>
     </m-tabbar>
   </div>
