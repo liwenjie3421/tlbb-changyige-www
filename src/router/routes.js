@@ -6,6 +6,7 @@ import ServersGroup from '../pages/search/ServersGroup.vue';
 import SearchList from '../pages/search/SearchList.vue';
 import SearchConditions from '../pages/search/SearchConditions.vue';
 import BetaOrFormal from '../pages/search/BetaOrFormal.vue';
+import OrderBy from '../pages/search/OrderBy.vue';
 
 export default [
     {
@@ -47,5 +48,10 @@ export default [
         path: '/betaOrFormal',
         name: 'betaOrFormal',
         component: BetaOrFormal
+    },
+    {
+        path: '/orderBy',
+        name: 'orderBy',
+        component: OrderBy
     }
 ];
